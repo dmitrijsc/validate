@@ -278,7 +278,7 @@ func (v *Validation) RequiredWithout(_ string, val interface{}, kvs ...string) b
 	}
 
 	for idx := range kvs {
-		if _, has := v.Get(kvs[idx]); !has {
+		if vv, has := v.Get(kvs[idx]); !has || NotEqual(vv, nil) && NotEqual(vv, ""){
 			return NotEqual(val, nil) && NotEqual(val, "")
 		}
 	}
